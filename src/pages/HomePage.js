@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { trandsDay } from "../api";
-import MoviesPage from "pages/MoviesPage";
+import MoviesPage from "pages/MovieDetails";
 import { Link, Routes, Route } from "react-router-dom";
 
 export default function HomePage() {
@@ -27,9 +27,6 @@ export default function HomePage() {
                     </li>
                 ))}
             </ul>
-            <Routes>
-                <Route path="/movies/:movieID" element={<MoviesPage />} />
-            </Routes>
         </div>
     );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { searchMovieTitle } from "../api";
 
-export default function MoviesPage() {
+export default function MovieDetails() {
     const [movieData, setMovieData] = useState(null);
     const { title } = useParams();
 
@@ -29,7 +29,4 @@ export default function MoviesPage() {
     );
 }
 
-// export default function MoviesPage() {
-//     return <h1> MoviesPage </h1>
-// }
 
