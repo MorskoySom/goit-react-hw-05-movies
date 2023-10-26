@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import { trandsDay } from "../api";
-import MoviesPage from "pages/MovieDetails";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const [titles, setTitles] = useState([]);
+    const [id, setId] = useState([]);
 
     useEffect(() => {
         trandsDay()
             .then(data => {
                 const titles = data.results.map(item => item.title);
+                const id = data.results.map(item => item.id);
                 setTitles(titles);
+                setId(id);
+                console.log(titles)
+                console.log(id)
             })
             .catch(error => {
                 console.error('Помилка при отриманні даних:', error);

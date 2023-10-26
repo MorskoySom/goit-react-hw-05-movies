@@ -29,17 +29,3 @@ export const searchMovieId = async (movieID) => {
 }
 
 
-
-// export const fetchImages = async (query, page) => {
-//     const params = new URLSearchParams({
-//         key: API_KEY,
-//         q: query,
-//         image_type: "photo",
-//         orientation: "horizontal",
-//         safesearch: true,
-//         per_page: 12,
-//         page: page
-//     });
-//     const response = await axios.get(`${BASE_URL}?${params}`);
-//     return response.data
-// }
