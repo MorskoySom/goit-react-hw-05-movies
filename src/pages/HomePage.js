@@ -4,22 +4,23 @@ import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const [titles, setTitles] = useState([]);
-    const [id, setId] = useState([]);
+    // const [id, setId] = useState([]);
 
     useEffect(() => {
         trandsDay()
             .then(data => {
                 const titles = data.results.map(item => item.title);
-                const id = data.results.map(item => item.id);
+                // const id = data.results.map(item => item.id);
                 setTitles(titles);
-                setId(id);
+                // setId(id);
                 console.log(titles)
-                console.log(id)
+                // console.log(id)
             })
             .catch(error => {
                 console.error('Помилка при отриманні даних:', error);
             });
     }, []);
+
 
     return (
         <div>
