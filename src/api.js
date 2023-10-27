@@ -28,4 +28,21 @@ export const searchMovieId = async (movieID) => {
     return response.data
 }
 
+export const searchCast = async (movieID) => {
+    const movie_id = movieID
+    const params = new URLSearchParams({
+        api_key: API_KEY,
+    });
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}/credits?${params}`);
+    return response.data
+}
 
+
+export const searchReviews = async (movieID) => {
+    const movie_id = movieID
+    const params = new URLSearchParams({
+        api_key: API_KEY,
+    });
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}/reviews?${params}`);
+    return response.data
+}

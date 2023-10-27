@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { searchMovieId } from "../api";
+import Cast from "components/Cast/Cast";
+import Reviews from "components/Reviews/Reviews";
+import { Link } from "react-router-dom";
 
 export default function MovieDetails() {
     const [movieData, setMovieData] = useState(null);
@@ -31,6 +34,14 @@ export default function MovieDetails() {
             <p>{movieData.overview}</p>
             <h2>Genres</h2>
             <p>{genres}</p>
+
+            <Link to="/movies/:movieId/cast">
+                <Cast movieId={movieId} />
+            </Link>
+
+            <Link to="/movies/:movieId/reviews">
+                <Reviews movieId={movieId} />
+            </Link>
         </div>
     );
 }
