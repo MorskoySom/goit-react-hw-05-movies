@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { trandsDay } from "../api";
-import { Link } from "react-router-dom";
 import { Linka } from "components/Layout/Layout.styled";
 
 export default function HomePage() {

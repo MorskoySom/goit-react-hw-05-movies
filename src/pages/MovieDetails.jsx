@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { searchCast, searchMovieId, searchReviews } from "../api";
-import Cast from "components/Cast/Cast";
-import Reviews from "components/Reviews/Reviews";
-import { Link } from "react-router-dom";
 import { MovieDetContainer } from "./MovieDetails.styled";
 import { Linka } from "components/Layout/Layout.styled";
 
@@ -50,6 +47,7 @@ export default function MovieDetails() {
 
     return (
         <div>
+            <Linka to="/">Back to HOME</Linka>
             <MovieDetContainer>
                 <div>
                     <h1>{movieData.title}</h1>
