@@ -1,6 +1,6 @@
 import HomePage from "pages/HomePage";
 import MovieDetails from "pages/MovieDetails";
-import Movies from "pages/MovieDetails";
+import Movies from "pages/Movies";
 import { Route, Routes } from "react-router-dom";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews/Reviews";

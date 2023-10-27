@@ -12,7 +12,7 @@ export default function HomePage() {
                 setMovies(movies);
             })
             .catch(error => {
-                console.error('Помилка при отриманні даних:', error);
+                console.error('Error:', error);
             });
     }, []);
 
