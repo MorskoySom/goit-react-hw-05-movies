@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { searchCast, searchMovieId, searchReviews } from "../api";
 import { MovieDetContainer } from "./MovieDetails.styled";
 import { Linka } from "components/Layout/Layout.styled";
@@ -7,12 +7,12 @@ import { Linka } from "components/Layout/Layout.styled";
 export default function MovieDetails() {
     const [movieData, setMovieData] = useState(null);
     const { movieId } = useParams();
+    const location = useLocation();
 
     useEffect(() => {
         searchMovieId(movieId)
             .then(data => {
                 setMovieData(data);
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error', error);
@@ -45,9 +45,10 @@ export default function MovieDetails() {
             });
     };
 
+
     return (
         <div>
-            <Linka to="/">Back to HOME</Linka>
+            <Linka to={location.state.from}>Go Back</Linka>
             <MovieDetContainer>
                 <div>
                     <h1>{movieData.title}</h1>
