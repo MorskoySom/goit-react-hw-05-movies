@@ -1,26 +1,14 @@
-import styled from "styled-components";
-import { NavLink, Outlet } from "react-router-dom";
+import { Container, Linka, Hat } from "./Layout.styled";
+import { Outlet } from "react-router-dom";
 
-export const Container = styled.div`
-    display: flex;    
-`
-
-
-const Link = styled(NavLink)`
-  &.active {
-    color: orange;
-  }
-`
 
 export const Layout = () => {
     return (
         <Container>
-            <header>
-                <nav>
-                    <Link to="/"> Home </Link>
-                    <Link to="/movies"> Movies </Link>
-                </nav>
-            </header>
+            <Hat>
+                <Linka to="/"> Home </Linka>
+                <Linka to="/movies"> Movies </Linka>
+            </Hat>
             <Outlet />
 
         </Container>

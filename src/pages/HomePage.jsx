@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { trandsDay } from "../api";
 import { Link } from "react-router-dom";
+import { Linka } from "components/Layout/Layout.styled";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
@@ -22,7 +23,7 @@ export default function HomePage() {
             <ul>
                 {movies.map((movie) => (
                     <li key={movie.id}>
-                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                        <Linka to={`/movies/${movie.id}`}>{movie.title}</Linka>
                     </li>
                 ))}
             </ul>

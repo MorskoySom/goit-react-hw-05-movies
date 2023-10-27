@@ -4,6 +4,8 @@ import { searchCast, searchMovieId, searchReviews } from "../api";
 import Cast from "components/Cast/Cast";
 import Reviews from "components/Reviews/Reviews";
 import { Link } from "react-router-dom";
+import { MovieDetContainer } from "./MovieDetails.styled";
+import { Linka } from "components/Layout/Layout.styled";
 
 export default function MovieDetails() {
     const [movieData, setMovieData] = useState(null);
@@ -48,15 +50,25 @@ export default function MovieDetails() {
 
     return (
         <div>
-            <h1>{movieData.title}</h1>
-            <p>Voutes rating<span>{movieData.vote_average}</span></p>
-            <h2>Overviews</h2>
-            <p>{movieData.overview}</p>
-            <h2>Genres</h2>
-            <p>{genres}</p>
+            <MovieDetContainer>
+                <div>
+                    <h1>{movieData.title}</h1>
+                    <p>(rating: {movieData.vote_average})</p>
+                </div>
+                <div>
+                    <h2>Overviews</h2>
+                    <p>{movieData.overview}</p>
+                </div>
+                <div>
+                    <h2>Genres</h2>
+                    <p>{genres}</p>
+                </div>
+            </MovieDetContainer>
 
-            <Link to="cast" onClick={handleCastClick}>Cast</Link>
-            <Link to="reviews" onClick={handleReviewsClick}>Reviews</Link>
+            <MovieDetContainer>
+                <Linka to="cast" onClick={handleCastClick}>Cast</Linka>
+                <Linka to="reviews" onClick={handleReviewsClick}>Reviews</Linka>
+            </MovieDetContainer>
 
             <Outlet />
 

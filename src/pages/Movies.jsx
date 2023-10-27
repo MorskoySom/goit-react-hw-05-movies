@@ -1,8 +1,10 @@
 import { searchMovieTitle } from "api";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Movies() {
     const [searchQuery, setSearchQuery] = useState("");
+    const [movies, setMovies] = useState([]);
 
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value);
@@ -13,13 +15,15 @@ export default function Movies() {
         if (searchQuery.trim() !== "") {
             searchMovieTitle(searchQuery)
                 .then(data => {
-                    console.log(data);
-                    // Тут ви можете зробити щось зі знайденими фільмами
+                    const movies = data.results;
+                    setMovies(movies);
+                    console.log(movies);
                 })
                 .catch(error => {
                     console.error('Error', error);
                 });
             console.log(searchQuery)
+            setSearchQuery("");
         }
     };
 
@@ -37,6 +41,13 @@ export default function Movies() {
                 />
                 <button type="submit">Search</button>
             </form>
+            <ul>
+                {movies.map((movie) => (
+                    <li key={movie.id}>
+                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
