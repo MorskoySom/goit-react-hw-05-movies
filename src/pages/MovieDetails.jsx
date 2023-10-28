@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { searchCast, searchMovieId, searchReviews } from "../api";
-import { MovieDetContainer } from "./MovieDetails.styled";
+import { LinkBack, MovieDetContainer, DescContainer } from "./MovieDetails.styled";
 import { Linka } from "components/Layout/Layout.styled";
 
 export default function MovieDetails() {
@@ -13,6 +13,7 @@ export default function MovieDetails() {
         searchMovieId(movieId)
             .then(data => {
                 setMovieData(data);
+                console.log(data);
             })
             .catch(error => {
                 console.error('Error', error);
@@ -38,7 +39,6 @@ export default function MovieDetails() {
     const handleReviewsClick = () => {
         searchReviews(movieId)
             .then(data => {
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error', error);
@@ -48,29 +48,31 @@ export default function MovieDetails() {
 
     return (
         <div>
-            <Linka to={location.state.from}>Go Back</Linka>
+            <LinkBack to={location.state.from}>Go Back</LinkBack>
             <MovieDetContainer>
                 <div>
-                    <h1>{movieData.title}</h1>
-                    <p>(rating: {movieData.vote_average})</p>
+                    <img src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`} alt="" />
                 </div>
-                <div>
-                    <h2>Overviews</h2>
-                    <p>{movieData.overview}</p>
-                </div>
-                <div>
-                    <h2>Genres</h2>
-                    <p>{genres}</p>
-                </div>
+                <DescContainer>
+                    <div>
+                        <h1>{movieData.title}</h1>
+                        <p>(rating: {movieData.vote_average})</p>
+                    </div>
+                    <div>
+                        <h2>Overviews</h2>
+                        <p>{movieData.overview}</p>
+                    </div>
+                    <div>
+                        <h2>Genres</h2>
+                        <p>{genres}</p>
+                    </div>
+                </DescContainer>
             </MovieDetContainer>
 
-            <MovieDetContainer>
-                <Linka to="cast" onClick={handleCastClick}>Cast</Linka>
-                <Linka to="reviews" onClick={handleReviewsClick}>Reviews</Linka>
-            </MovieDetContainer>
+            <Linka to="cast" onClick={handleCastClick}>Cast</Linka>
+            <Linka to="reviews" onClick={handleReviewsClick}>Reviews</Linka>
 
-            <Outlet />
-
+            <Outlet to={location.state.from} />
 
         </div>
     );

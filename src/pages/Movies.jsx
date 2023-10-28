@@ -26,8 +26,6 @@ export default function Movies() {
 
     const location = useLocation()
 
-
-
     return (
         <div>
             <h1>SearchMoviesPage</h1>
