@@ -21,15 +21,18 @@ export default function Reviews() {
     return (
         <div>
             <h1> Reviews </h1>
-            <ul>
-                {reviews.map((review) => (
-                    <li key={review.id}>
-                        <div>{review.author}</div>
-                        <div>{review.content}</div>
-                    </li>
-                ))}
-            </ul>
-
+            {reviews.length > 0 ? (
+                <ul>
+                    {reviews.map((review) => (
+                        <li key={review.id}>
+                            <div>{review.author}</div>
+                            <div>{review.content}</div>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No reviews available</p>
+            )}
         </div>
     )
 }

@@ -48,7 +48,7 @@ export default function MovieDetails() {
 
     return (
         <div>
-            <LinkBack to={location?.state?.from ?? "movies/:movieId"}>Go Back</LinkBack>
+            <LinkBack to={location?.state?.from ?? "/"}>Go Back</LinkBack>
             <MovieDetContainer>
                 <div>
                     <img src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`} alt="" />
@@ -72,7 +72,7 @@ export default function MovieDetails() {
             <Linka to="cast" onClick={handleCastClick}>Cast</Linka>
             <Linka to="reviews" onClick={handleReviewsClick}>Reviews</Linka>
 
-            <Outlet to={location.state.from} />
+            <Outlet />
 
         </div>
     );
