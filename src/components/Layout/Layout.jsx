@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Container, Linka, Hat } from "./Layout.styled";
 import { Outlet } from "react-router-dom";
 
@@ -9,7 +10,10 @@ export const Layout = () => {
                 <Linka to="/"> Home </Linka>
                 <Linka to="/movies"> Movies </Linka>
             </Hat>
-            <Outlet />
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+            </Suspense>
 
         </Container>
 
