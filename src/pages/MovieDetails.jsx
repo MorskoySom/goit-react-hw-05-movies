@@ -45,6 +45,7 @@ export default function MovieDetails() {
             });
     };
 
+    const cameFrom = location?.state?.from ?? '/';
 
     return (
         <div>
@@ -69,8 +70,8 @@ export default function MovieDetails() {
                 </DescContainer>
             </MovieDetContainer>
 
-            <Linka to="cast" onClick={handleCastClick}>Cast</Linka>
-            <Linka to="reviews" onClick={handleReviewsClick}>Reviews</Linka>
+            <Linka to="cast" state={{ from: cameFrom }} onClick={handleCastClick}>Cast</Linka>
+            <Linka to="reviews" state={{ from: cameFrom }} onClick={handleReviewsClick}>Reviews</Linka>
 
             <Outlet />
 
