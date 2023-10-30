@@ -9,24 +9,6 @@ export default function Movies() {
 
     const query = params.get("query") ?? ""
 
-    const handleInputChange = (e) => {
-        params.set('query', e.target.value);
-        setParams(params);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (query.trim() !== "") {
-            searchMovieTitle(query)
-                .then(data => {
-                    const movies = data.results;
-                    setMovies(movies);
-                })
-                .catch(error => {
-                    console.error('Error', error);
-                });
-        }
-    };
 
     useEffect(() => {
         searchMovieTitle(query)
@@ -45,11 +27,7 @@ export default function Movies() {
     return (
         <div>
             <h1>SearchMoviesPage</h1>
-            <MoviesSearchForm
-                query={query}
-                onInputChange={handleInputChange}
-                onFormSubmit={handleSubmit}
-            />
+            <MoviesSearchForm />
             <ul>
                 {movies.map((movie) => (
                     <li key={movie.id}>
@@ -60,3 +38,4 @@ export default function Movies() {
         </div>
     );
 };
+
