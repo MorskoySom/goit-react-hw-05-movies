@@ -1,19 +1,21 @@
 import { searchMovieTitle } from "api";
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 export default function Movies() {
-    const [searchQuery, setSearchQuery] = useState("");
     const [movies, setMovies] = useState([]);
+    const [params, setParams] = useSearchParams();
+    const query = params.get("query") ?? ""
 
     const handleInputChange = (e) => {
-        setSearchQuery(e.target.value);
+        params.set('query', e.target.value);
+        setParams(params);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (searchQuery.trim() !== "") {
-            searchMovieTitle(searchQuery)
+        if (query.trim() !== "") {
+            searchMovieTitle(query)
                 .then(data => {
                     const movies = data.results;
                     setMovies(movies);
@@ -32,7 +34,7 @@ export default function Movies() {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    value={searchQuery}
+                    value={query}
                     onChange={handleInputChange}
                     placeholder="Search for movies"
                 />
