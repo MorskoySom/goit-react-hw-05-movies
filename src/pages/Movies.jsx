@@ -9,36 +9,27 @@ export default function Movies() {
 
     const query = params.get("query") ?? ""
 
-    const handleInputChange = (e) => {
-        params.set('query', e.target.value);
-        setParams(params);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (query.trim() !== "") {
-            searchMovieTitle(query)
-                .then(data => {
-                    const movies = data.results;
-                    setMovies(movies);
-                })
-                .catch(error => {
-                    console.error('Error', error);
-                });
-        }
+    const onSubmit = (inputQ) => {
+        setParams({ query: inputQ });
     };
 
     useEffect(() => {
-        searchMovieTitle(query)
-            .then(data => {
+        const fetchMovies = async () => {
+            if (query.trim() === "") {
+                return;
+            }
+
+            try {
+                const data = await searchMovieTitle(query);
                 const movies = data.results;
                 setMovies(movies);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error', error);
-            });
-    }, [query]);
+            }
+        };
 
+        fetchMovies();
+    }, [query]);
 
     const location = useLocation()
 
@@ -46,9 +37,7 @@ export default function Movies() {
         <div>
             <h1>SearchMoviesPage</h1>
             <MoviesSearchForm
-                query={query}
-                onInputChange={handleInputChange}
-                onFormSubmit={handleSubmit}
+                onSubmit={onSubmit}
             />
             <ul>
                 {movies.map((movie) => (

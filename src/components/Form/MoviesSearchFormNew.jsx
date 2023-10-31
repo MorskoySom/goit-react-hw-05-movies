@@ -1,32 +1,28 @@
-import React from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
 
-export default function MoviesSearchForm() {
-    const [params, setParams] = useSearchParams();
+export default function MoviesSearchForm({ onSubmit }) {
+    const [inputQuery, setInputQuery] = useState("");
 
     const handleInputChange = (e) => {
-        params.set('query', e.target.value);
-        setParams(params);
+        setInputQuery(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        params.set('query', e.target.value);
-        setParams(params);
+        onSubmit(e.target.value);
     };
 
-    const query = params.get("query") ?? ""
 
+    console.log(inputQuery);
     return (
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={query}
+                value={inputQuery}
                 onChange={handleInputChange}
                 placeholder="Search for movies"
             />
             <button type="submit">Search</button>
         </form>
     );
-};
-
+}

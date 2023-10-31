@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function MoviesSearchForm({ query, onInputChange, onFormSubmit }) {
+export default function MoviesSearchForm({ onSubmit }) {
+    const [inputQuery, setInputQuery] = useState("");
+
+    const handleInputChange = (e) => {
+        setInputQuery(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(inputQuery);
+    };
+
+
+
     return (
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={query}
-                onChange={onInputChange}
+                value={inputQuery}
+                onChange={handleInputChange}
                 placeholder="Search for movies"
             />
             <button type="submit">Search</button>
         </form>
     );
-};
+}
